@@ -8,7 +8,7 @@
 let mongoose = require('mongoose');
 let { Schema } = mongoose;
 
-let {{model}} = new Schema({
+let {{lower_name}} = new Schema({
   // Edit Your Model Here
 });
 
