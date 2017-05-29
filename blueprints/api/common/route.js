@@ -28,7 +28,7 @@ module.exports = {
 
   DELETE : [{
     path : '/{{plural_lower_name}}',
-    action : 'destroy'
+    action : 'Delete'
   }]
 
 };
