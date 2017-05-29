@@ -5,13 +5,13 @@
  * @version 0.0.1
  */
 const {imports} = Glad;
-const {{class_name}} = imports("{{lower_name}}/Model");
+const {{class_name}} = imports("{{lower_name}}Model");
 
 class {{class_name}}Controller extends Glad.Controller {
 
   Get () {
     {{class_name}}.find().exec()
-      .then({{plural_lower_name}}) => this.res.json({{plural_lower_name}}))
+      .then({{plural_lower_name}} => this.res.json({{plural_lower_name}}))
       .catch(err => this.error(err));
   }
 

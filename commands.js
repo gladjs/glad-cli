@@ -166,7 +166,7 @@ class Command {
 
   createApiResources (vars) {
 
-    yellow(`Creating ${this.class_name}Controller`);
+    yellow(`Creating ${this.class_name} Controller`);
     this.controller = this.replaceTemplateVariables(this.controller, vars);
     yellow(`Creating ${this.class_name} Model`);
     this.model = this.replaceTemplateVariables(this.model, vars);
@@ -194,7 +194,7 @@ class Command {
   }
 
   destroy () {
-
+    // TODO Do it!
   }
 
   copyOverBlueprint (folder) {
