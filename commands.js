@@ -28,7 +28,7 @@ class Command {
       this.gladCliVersion = this.gladCliConfig.version;
       this.config = require(path.join(process.cwd(), 'config'));
       this.package = require(path.join(process.cwd(), 'package.json'));
-      this.gladConfig = require(path.join(process.cwd(), 'node_modules/gd/package.json'));
+      this.gladConfig = require(path.join(process.cwd(), 'node_modules/glad/package.json'));
       this.gladVersion = this.gladConfig.version;
 
     } catch (err) {
@@ -189,12 +189,88 @@ class Command {
     return tpl;
   }
 
+  // Update this such that glad.js fires a ready event, and this listens to it.
+  // Using timeouts will definately cause headaches for folks with extensive initializers.
   run () {
-
+    let resource = this.args._.slice(1)[0];
+    process.env['CONSOLE_MODE'] = true;
+    return this.serve().then( () => {
+      let resourcePath = path.join(this.path, resource);
+      setTimeout(() => {
+        yellow(`Getting ready to execute ${resourcePath}`);
+      }, 500);
+      setTimeout(() => {
+        let resourceModule = require(resourcePath);
+        resourceModule();
+      }, 3000);
+    });
   }
 
   destroy () {
-    // TODO Do it!
+
+    let resource = this.args._.slice(1)[0];
+
+    if (!resource) {
+      return console.error("Please specify a resource that you would like to destroy");
+    }
+
+    resource = resource.toLowerCase();
+
+    this.modelPath      = path.join(this.path, 'models', `${resource}.js`);
+    this.controllerPath = path.join(this.path, 'controllers', `${resource}.js`);
+    this.routePath      = path.join(this.path, 'routes', `${resource}.js`);
+    this.viewsPath       = path.join(this.path, 'views', `${resource}`);
+
+    let rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+
+    rl.question(`Are you sure you want to remove the resources for ${resource}? [y/n]\n`, answer => {
+      if (answer === 'y') {
+        this.removeApiResources();
+      } else {
+        green('Ok, Glad has done nothing destructive and will exit now.');
+      }
+      rl.close();
+    });
+
+  }
+
+  removeApiResources () {
+    try {
+      yellow(`Removing ${this.modelPath}`);
+      fs.unlinkSync(this.modelPath);
+    } catch (e) {
+      if (e.code === 'ENOENT') {
+        grey(`Not Found > ${this.modelPath.split('/').slice(-2).join('/')}`);
+      } else {
+        red(e);
+      }
+    }
+
+    try {
+      yellow(`Removing ${this.controllerPath}`);
+      fs.unlinkSync(this.controllerPath);
+    } catch (e) {
+      if (e.code === 'ENOENT') {
+        grey(`Not Found > ${this.controllerPath.split('/').slice(-2).join('/')}`);
+      } else {
+        red(e);
+      }
+    }
+
+    try {
+      yellow(`Removing ${this.routePath}`);
+      fs.unlinkSync(this.routePath);
+    } catch (e) {
+      if (e.code === 'ENOENT') {
+        grey(`Not Found > ${this.routePath.split('/').slice(-2).join('/')}`);
+      } else {
+        red(e);
+      }
+    }
+
   }
 
   copyOverBlueprint (folder) {
@@ -233,7 +309,10 @@ class Command {
         let packageJson = require(path.join(this.path, 'package.json'));
         let config = require(path.join(this.path, 'config.js'));
 
-        packageJson.dependencies.glad = `^${this.gladCliVersion}`;
+        // Eventually, we'll make sure that Glad CLI is on the same release cycle as Glad JS
+        // packageJson.dependencies.glad = `${this.gladCliVersion}`;
+        packageJson.dependencies.glad = "git+https://github.com/gladjs/glad.git";
+
         packageJson.author = process.env.USER;
 
         if (odm === 'waterline') {

@@ -1,1 +1,1 @@
-(require('gd')['__boot__']());
+(require('glad')['__boot__']());
