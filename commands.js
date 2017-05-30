@@ -103,7 +103,7 @@ class Command {
   }
 
   api () {
-
+    let withModel = this.args.model !== false;
     let resource = this.args._.slice(1)[0];
     let lower_name = lodash.toLower(resource);
     let plural_lower_name = pluralize(lower_name);
@@ -111,15 +111,17 @@ class Command {
     let config = require(path.join(this.path, 'config'));
     let orm = config.orm || 'default';
     let adapter = config.defaultAdapter || '';
-    let vars = [plural_lower_name, lower_name, class_name, orm, adapter];
+    let vars = [plural_lower_name, lower_name, class_name, orm, adapter, withModel];
     let templateDir = 'blueprints/api';
 
     this.modelPath      = path.join(this.path, 'models', `${lower_name}.js`);
     this.controllerPath = path.join(this.path, 'controllers', `${lower_name}.js`);
     this.routePath      = path.join(this.path, 'routes', `${lower_name}.js`);
 
+    console.log(withModel);
+
     this.model      = fs.readFileSync(path.join(this.cliDir, templateDir, orm, 'model.js'), 'utf8');
-    this.controller = fs.readFileSync(path.join(this.cliDir, templateDir, orm, 'controller.js'), 'utf8');
+    this.controller = fs.readFileSync(path.join(this.cliDir, templateDir, (withModel ? orm : 'nomodel'), 'controller.js'), 'utf8');
     this.route      = fs.readFileSync(path.join(this.cliDir, templateDir, 'common/route.js'), 'utf8');
 
     let modelExists = fs.existsSync(this.modelPath);
@@ -131,9 +133,12 @@ class Command {
     }
 
     return new Promise( (resolve, reject) => {
-
-      let resources = [modelExists && this.modelPath.replace(this.path + '/', ''), routeExists && this.routePath.replace(this.path + '/', ''), controllerExists && this.controllerPath.replace(this.path + '/', '')].filter(x => x);
       let rl;
+      let resources = [
+        withModel && modelExists && this.modelPath.replace(this.path + '/', ''),
+        routeExists && this.routePath.replace(this.path + '/', ''),
+        controllerExists && this.controllerPath.replace(this.path + '/', '')
+      ].filter(x => x);
 
       if (resources.length) {
 
@@ -166,14 +171,23 @@ class Command {
 
   createApiResources (vars) {
 
+    let withModel = vars.pop();
+
     yellow(`Creating ${this.class_name} Controller`);
     this.controller = this.replaceTemplateVariables(this.controller, vars);
-    yellow(`Creating ${this.class_name} Model`);
-    this.model = this.replaceTemplateVariables(this.model, vars);
+
+    if (withModel) {
+      yellow(`Creating ${this.class_name} Model`);
+      this.model = this.replaceTemplateVariables(this.model, vars);
+    }
+
     yellow(`Creating ${this.class_name} Route`);
     this.route = this.replaceTemplateVariables(this.route, vars);
 
-    fs.writeFileSync(this.modelPath, this.model, 'utf8');
+    if (withModel) {
+      fs.writeFileSync(this.modelPath, this.model, 'utf8');
+    }
+
     fs.writeFileSync(this.controllerPath, this.controller, 'utf8');
     fs.writeFileSync(this.routePath, this.route, 'utf8');
 

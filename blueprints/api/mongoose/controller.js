@@ -4,6 +4,7 @@
  * @module controllers/{{lower_name}}
  * @version 0.0.1
  */
+
 const {imports} = Glad;
 const {{class_name}} = imports("{{lower_name}}Model");
 
