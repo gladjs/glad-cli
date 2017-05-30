@@ -6,14 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Charlie Mitchell",
   "license": "MIT",
   "bin": {
     "glad": "./index.js"
   },
   "bugs": {
     "email": "charliesemailis@gmail.com",
-    "url": "http://github.com/charliemitchell/glad"
+    "url": "http://github.com/gladjs/glad-cli"
   },
   "dependencies": {
     "async": "^2.1.4",
