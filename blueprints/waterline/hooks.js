@@ -1,6 +1,6 @@
 let Waterline = require('waterline');
 let diskAdapter = require('sails-disk');
-let { capitalize } = require('gd').string
+let { capitalize } = require('glad').string
 
 module.exports = {
 
