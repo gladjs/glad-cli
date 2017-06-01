@@ -341,16 +341,20 @@ class Command {
         if (odm === 'waterline' && adapter) {
           config.defaultAdapter = adapter;
         }
-
+        
         if ( (odm === 'waterline' && adapter === 'sails-mongo') || odm === 'mongoose') {
           config.mongodb = {
             host : 'localhost',
             port : 27017,
             database : 'app'
           };
+        }
+        
+        if (odm) {
           config.orm = odm;
           fs.writeFileSync(path.join(this.path, 'config.js'), 'module.exports = ' + JSON.stringify(config, null, 2), 'utf8');
         }
+        
 
         this.npmInstall().then(resolve).catch(reject);
 
