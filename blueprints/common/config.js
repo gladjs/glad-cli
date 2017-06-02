@@ -13,6 +13,8 @@ module.exports = {
     type : 'json'
   },
 
+  defaultViewEngine : 'pug',
+
   exposeModelsGlobally : true,
 
   redis : {
