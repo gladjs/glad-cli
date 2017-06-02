@@ -31,7 +31,7 @@ scripts in the context of your app.
 - Blank Canvas (Any Database + No ORM/ODM)
 
 You can use multiple databases such as postgresql, mongodb and couchdb for the same project.
-If you want an ORM/ODM for this choose `odm=waterline` and pick an adapter that will become the default.
+If you want an ORM/ODM for this choose `--odm=waterline` and pick an adapter that will become the default.
 Otherwise go with the blank canvas option, and install whatever you want.
 
 
@@ -39,27 +39,27 @@ Otherwise go with the blank canvas option, and install whatever you want.
 
 - Create a new folder for your project
 - `cd /path/to/new-folder`
-- `glad init odm=mongoose`
+- `glad init --odm=mongoose`
 
 
 #### Creating a new project using mongodb and waterline.
 
 - Create a new folder for your project
 - `cd /path/to/new-folder`
-- `glad init odm=waterline --adapter=sails-mongo`
+- `glad init --odm=waterline --adapter=sails-mongo`
 
 
 #### Creating a new project using postgresql and waterline.
 
 - Create a new folder for your project
 - `cd /path/to/new-folder`
-- `glad init odm=waterline --adapter=sails-postgresql`
+- `glad init --odm=waterline --adapter=sails-postgresql`
 
 #### Creating a new project using mysql and waterline.
 
 - Create a new folder for your project
 - `cd /path/to/new-folder`
-- `glad init odm=waterline --adapter=sails-mysql`
+- `glad init --odm=waterline --adapter=sails-mysql`
 
 
 **You can use any waterline adapter by specifying its `npm` name with the `--adapter` argument**
