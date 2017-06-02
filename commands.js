@@ -118,8 +118,6 @@ class Command {
     this.controllerPath = path.join(this.path, 'controllers', `${lower_name}.js`);
     this.routePath      = path.join(this.path, 'routes', `${lower_name}.js`);
 
-    console.log(withModel);
-
     this.model      = fs.readFileSync(path.join(this.cliDir, templateDir, orm, 'model.js'), 'utf8');
     this.controller = fs.readFileSync(path.join(this.cliDir, templateDir, (withModel ? orm : 'nomodel'), 'controller.js'), 'utf8');
     this.route      = fs.readFileSync(path.join(this.cliDir, templateDir, 'common/route.js'), 'utf8');
