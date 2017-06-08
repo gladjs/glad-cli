@@ -27,7 +27,7 @@ module.exports = {
   }],
 
   DELETE : [{
-    path : '/{{plural_lower_name}}',
+    path : '/{{plural_lower_name}}/:id',
     action : 'Delete'
   }]
 

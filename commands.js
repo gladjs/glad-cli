@@ -310,9 +310,15 @@ class Command {
 
     return new Promise( (resolve, reject) =>  {
 
-      let odm = this.args.odm;
+      let odm = this.args.odm || 'mongoose';
       let adapter = this.args.adapter || "sails-disk";
-      let blueprint = odm || 'default';
+      let blueprint;
+
+      if (odm === 'none') {
+        odm = 'default';
+      }
+
+      blueprint = odm;
 
       yellow(`creating a new ${odm || ''} project`);
 
@@ -339,7 +345,7 @@ class Command {
         if (odm === 'waterline' && adapter) {
           config.defaultAdapter = adapter;
         }
-        
+
         if ( (odm === 'waterline' && adapter === 'sails-mongo') || odm === 'mongoose') {
           config.mongodb = {
             host : 'localhost',
@@ -347,12 +353,12 @@ class Command {
             database : 'app'
           };
         }
-        
+
         if (odm) {
           config.orm = odm;
           fs.writeFileSync(path.join(this.path, 'config.js'), 'module.exports = ' + JSON.stringify(config, null, 2), 'utf8');
         }
-        
+
 
         this.npmInstall().then(resolve).catch(reject);
 
