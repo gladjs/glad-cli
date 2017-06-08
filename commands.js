@@ -329,7 +329,7 @@ class Command {
 
         // Eventually, we'll make sure that Glad CLI is on the same release cycle as Glad JS
         // packageJson.dependencies.glad = `${this.gladCliVersion}`;
-        packageJson.dependencies.glad = "git+https://github.com/gladjs/glad.git";
+        packageJson.dependencies.glad = "1.0.2";
 
         packageJson.author = process.env.USER;
 
