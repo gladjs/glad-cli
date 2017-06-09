@@ -39,10 +39,10 @@ Otherwise go with the blank canvas option, and install whatever you want.
 
 - Create a new folder for your project
 - `cd /path/to/new-folder`
-- `glad init --odm=mongoose`
+- `glad init
 
 
-#### Creating a new project using mongodb and waterline.
+#### Creating a new project using mongodb and waterline (Default).
 
 - Create a new folder for your project
 - `cd /path/to/new-folder`
@@ -69,7 +69,7 @@ Otherwise go with the blank canvas option, and install whatever you want.
 
 - Create a new folder for your project
 - `cd /path/to/new-folder`
-- `glad init`
+- `glad init --odm=none`
 
 
 #### Create a rest API
