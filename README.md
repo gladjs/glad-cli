@@ -35,14 +35,14 @@ If you want an ORM/ODM for this choose `--odm=waterline` and pick an adapter tha
 Otherwise go with the blank canvas option, and install whatever you want.
 
 
-#### Creating a new project using mongodb and mongoose.
+#### Creating a new project using mongodb and mongoose. (Default)
 
 - Create a new folder for your project
 - `cd /path/to/new-folder`
 - `glad init
 
 
-#### Creating a new project using mongodb and waterline (Default).
+#### Creating a new project using mongodb and waterline.
 
 - Create a new folder for your project
 - `cd /path/to/new-folder`
