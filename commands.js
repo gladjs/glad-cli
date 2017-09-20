@@ -326,10 +326,8 @@ class Command {
 
         let packageJson = require(path.join(this.path, 'package.json'));
         let config = require(path.join(this.path, 'config.js'));
-
-        // Eventually, we'll make sure that Glad CLI is on the same release cycle as Glad JS
-        // packageJson.dependencies.glad = `${this.gladCliVersion}`;
-        packageJson.dependencies.glad = "1.0.3";
+        
+        packageJson.dependencies.glad = `${this.gladCliVersion}`;
 
         packageJson.author = process.env.USER;
 
