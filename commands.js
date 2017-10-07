@@ -328,8 +328,8 @@ class Command {
         let config = require(path.join(this.path, 'config.js'));
         
         packageJson.dependencies.glad = `${this.gladCliVersion}`;
-
         packageJson.author = process.env.USER;
+        packageJson.name = path.basename(this.path);
 
         if (odm === 'waterline') {
           packageJson.dependencies.waterline = WATERLINE_VERSION;
@@ -379,8 +379,8 @@ class Command {
 
       npm.stdout.setEncoding('utf8');
 
-      npm.stdout.on('data', function(stdout) {
-        console.log(yellow('NPM >  ' + stdout));
+      npm.stdout.on('data', function (stdout) {
+        console.log(stdout);
       });
 
       npm.on('close', function(code) {

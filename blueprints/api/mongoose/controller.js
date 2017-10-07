@@ -11,13 +11,13 @@ const {{class_name}} = imports("{{lower_name}}Model");
 class {{class_name}}Controller extends Glad.Controller {
 
   Get () {
-    {{class_name}}.find().exec()
+    {{class_name}}.find()
       .then({{plural_lower_name}} => this.res.json({{plural_lower_name}}))
       .catch(err => this.error(err));
   }
 
   FindOne () {
-    {{class_name}}.findOne({ _id: this.params.id}).exec()
+    {{class_name}}.findOne({ _id: this.params.id})
       .then({{lower_name}} => this.res.json({{lower_name}}))
       .catch(err => this.error(err));
   }
