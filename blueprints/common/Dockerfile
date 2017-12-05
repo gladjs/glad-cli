@@ -32,8 +32,8 @@ ENV LOCALKEY mylocalkey
 # Use process.env.LOCALHOST
 ENV LOCALHOST http://172.17.42.1
 
-# if (process.env.ENVIRONMENT === 'production') { do stuff }
-ENV ENVIRONMENT production
+# if (process.env.GLAD_ENV === 'production') { do stuff }
+ENV GLAD_ENV production
 
 # Run the App in var/www
 WORKDIR /var/www/
