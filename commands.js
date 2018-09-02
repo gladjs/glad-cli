@@ -1,6 +1,6 @@
 
 const WATERLINE_VERSION = "^0.11.8";
-const MONGOOSE_VERSION  = "4.10.8";
+const MONGOOSE_VERSION  = "^5.2.12";
 
 let path = require('path');
 let replHistory = require('repl.history');
