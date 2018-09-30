@@ -339,6 +339,8 @@ class Command {
         }
 
         fs.writeFileSync(path.join(this.path, 'package.json'), JSON.stringify(packageJson, null, 2), 'utf8');
+        fs.writeFileSync(path.join(this.path, '.gitignore'),   'node_modules\n.vagrant/\n.glad_history\n.DS_Store', 'utf8');
+        fs.writeFileSync(path.join(this.path, '.glad_history'),'', 'utf8');
 
         if (odm === 'waterline' && adapter) {
           config.defaultAdapter = adapter;
