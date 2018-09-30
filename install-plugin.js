@@ -1,5 +1,5 @@
 // post npm install action
-const fs = require('fs');
+const fs   = require('fs');
 const exec = require('child_process').exec;
 
 module.exports = class Installer {
