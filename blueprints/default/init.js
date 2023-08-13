@@ -1,5 +1,3 @@
-module.exports = function (server, app, express) {
-  return new Promise (function (resolve, reject) {
-    resolve();
-  });
+export default async function (server, app, express) {
+  return Promise.resolve();
 };

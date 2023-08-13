@@ -5,7 +5,7 @@
  * @version 0.0.1
  */
 
-module.exports = {
+export default {
 
   GET : [{
     path : '/{{plural_lower_name}}',

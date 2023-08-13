@@ -11,26 +11,26 @@
 
 class {{class_name}}Controller extends Glad.Controller {
 
-  Get () {
+  async Get () {
     this.res.status(500).json({ err: 'not implemented' });
   }
 
-  FindOne () {
+  async FindOne () {
     this.res.status(500).json({ err: 'not implemented' });
   }
 
-  Post () {
+  async Post () {
     this.res.status(500).json({ err: 'not implemented' });
   }
 
-  Put () {
+  async Put () {
     this.res.status(500).json({ err: 'not implemented' });
   }
 
-  Delete () {
+  async Delete () {
     this.res.status(500).json({ err: 'not implemented' });
   }
 
 }
 
-module.exports = {{class_name}}Controller;
+export default {{class_name}}Controller;

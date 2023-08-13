@@ -1,22 +1,21 @@
-module.exports = {
-
-  onAfterController : function (req, res) {
+export default {
+  onAfterController(req, res) {
     // console.log('Hook: onAfterController');
   },
 
-  onAfterGET : function (req, res) {
+  onAfterGET(req, res) {
     // console.log('Hook: onAfterGET');
   },
 
-  onAfterPOST : function (req, res) {
+  onAfterPOST(req, res) {
     // console.log('Hook: onAfterPOST');
   },
 
-  onAfterPUT : function (req) {
+  onAfterPUT(req) {
     // console.log('Hook: onAfterPUT');
   },
 
-  onAfterDELETE : function (req, res) {
+  onAfterDELETE(req, res) {
     // console.log('Hook: onAfterDELETE');
-  }
+  },
 };

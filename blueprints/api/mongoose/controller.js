@@ -5,41 +5,57 @@
  * @version 0.0.1
  */
 
-const {imports} = Glad;
-const {{class_name}} = imports("{{lower_name}}Model");
+import {{class_name}} from "../models/{{lower_name}}.js";
 
 class {{class_name}}Controller extends Glad.Controller {
 
-  Get () {
-    {{class_name}}.find()
-      .then({{plural_lower_name}} => this.res.json({{plural_lower_name}}))
-      .catch(err => this.error(err));
+  async Get () {
+    try {
+      const {{plural_lower_name}} = await {{class_name}}.find()
+      this.res.json({{plural_lower_name}})
+    } catch (err) {
+      this.error(err)
+    }
   }
 
-  FindOne () {
-    {{class_name}}.findOne({ _id: this.params.id})
-      .then({{lower_name}} => this.res.json({{lower_name}}))
-      .catch(err => this.error(err));
+  async FindOne () {
+    try{
+      const {{lower_name}} = await {{class_name}}.findOne({ _id: this.params.id})
+      this.res.json({{lower_name}})
+    } catch (err) {
+      this.error(err)
+    }
   }
 
-  Post () {
-    new {{class_name}}(this.body).save()
-      .then({{lower_name}} => this.res.status(201).json({{lower_name}}))
-      .catch(err => this.error(err));
+  async Post () {
+    try {
+      const {{lower_name}} = new {{class_name}}(this.body)
+      await {{lower_name}}.save()
+      this.res.status(201).json({{lower_name}})
+    } catch (err) {
+      this.error(err)
+    }
   }
 
-  Put () {
-    {{class_name}}.findOneAndUpdate({_id: this.params.id}, this.body)
-      .then({{lower_name}} => this.res.json({{lower_name}}))
-      .catch(err => this.error(err));
+  async Put () {
+    try {
+      const {{lower_name}} = {{class_name}}.findOneAndUpdate({_id: this.params.id}, this.body)
+      this.res.json({{lower_name}})
+    } catch (err) {
+      this.error(err)
+    }
   }
 
-  Delete () {
-    {{class_name}}.findOne({_id: this.params.id}).remove()
-      .then(() => this.res.status(204).send())
-      .catch(err => this.error(err));
+  async Delete () {
+    try {
+      const {{lower_name}} = await {{class_name}}.findOne({_id: this.params.id})
+      const result = await {{lower_name}}.remove()
+      this.res.status(204).send()
+    } catch (err) {
+      this.error(err)
+    }
   }
 
 }
 
-module.exports = {{class_name}}Controller;
+export default {{class_name}}Controller;

@@ -5,7 +5,7 @@
  * @version 0.0.1
  */
 
-let Waterline = require('waterline');
+import Waterline from 'waterline';
 
 let {{class_name}} = Waterline.Collection.extend({
   identity: '{{lower_name}}',
@@ -13,4 +13,4 @@ let {{class_name}} = Waterline.Collection.extend({
   attributes: {}
 });
 
-module.exports = {{class_name}};
+export default {{class_name}};

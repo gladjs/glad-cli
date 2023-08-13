@@ -1,8 +1,8 @@
-let Waterline = require('waterline');
-let diskAdapter = require('sails-disk');
-let { capitalize } = require('glad').string
+import Waterline from 'waterline'
+import diskAdapter from 'sails-disk'
 
-module.exports = {
+const { capitalize } = Glad.string
+export default {
 
   // This extra step is needed when using waterline
   initializeWaterline (router) {

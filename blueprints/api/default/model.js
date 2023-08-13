@@ -10,5 +10,5 @@
  * @version 0.0.1
  */
 
-let {{class_name}}Model = {};
-module.exports = {{class_name}}Model;
+const {{class_name}}Model = {};
+export default {{class_name}}Model;

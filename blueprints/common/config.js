@@ -1,35 +1,33 @@
-module.exports = {
+export default {
+  port: 4242,
 
-  port : 4242,
-
-  host : '0.0.0.0',
+  host: "0.0.0.0",
 
   logHTTP: true,
 
-  defaultBodyParser : 'json',
+  defaultBodyParser: "json",
 
-  defaultBodyParserOptions : {
-    limit : '0.3mb',
-    type : 'json'
+  defaultBodyParserOptions: {
+    limit: "0.3mb",
+    type: "json",
   },
 
-  defaultViewEngine : 'pug',
+  defaultViewEngine: "pug",
 
-  exposeModelsGlobally : true,
+  exposeModelsGlobally: true,
 
-  redis : {
+  redis: {
     host: "localhost",
-    port: 6379
+    port: 6379,
   },
 
-  cookie : {
-    name : 'glad.sid',
-    secret: 'change-this-tosomethingthatlooksuglyandmakeitprettylongandrandomtoo',
-    maxAge : 3600000 * 24,
+  cookie: {
+    name: "glad.sid",
+    secret: "change-this-tosomethingthatlooksuglyandmakeitprettylongandrandomtoo",
+    maxAge: 3600000 * 24,
   },
 
-  session : {
-    storage: 'redis' // can be mongodb
-  }
-
+  session: {
+    storage: "redis", // can be mongodb
+  },
 };

@@ -29,4 +29,4 @@ class {{class_name}}Controller extends Glad.Controller {
 
 }
 
-module.exports = {{class_name}}Controller;
+export default {{class_name}}Controller;

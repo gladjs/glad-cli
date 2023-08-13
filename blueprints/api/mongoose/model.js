@@ -5,12 +5,11 @@
  * @version 0.0.1
  */
 
-let mongoose = require('mongoose');
-let { Schema } = mongoose;
+import mongoose from "mongoose";
 
-let {{lower_name}} = new Schema({
+const {{lower_name}} = new mongoose.Schema({
   // Edit Your Model Here
 });
 
-mongoose.model('{{lower_name}}', {{lower_name}});
-module.exports = mongoose.model('{{lower_name}}');
+mongoose.model("{{lower_name}}", {{lower_name}});
+export default mongoose.model("{{lower_name}}");
